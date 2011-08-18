@@ -204,7 +204,7 @@ EOF
       end
 
       it "should print a summary of failing examples" do
-        @logger.example_failed( nil, nil, @failure1 )
+        @logger.example_failed( @example1 )
 
         @logger.dump_failure
 
@@ -218,8 +218,8 @@ EOF
       end
 
       it "should produce a list of command lines for failing examples" do
-        @logger.example_failed( @example1, nil, nil )
-        @logger.example_failed( @example2, nil, nil )
+        @logger.example_failed( @example1 )
+        @logger.example_failed( @example2 )
 
         @logger.dump_failure
 
@@ -231,7 +231,7 @@ EOF
       it "should invoke spec for rspec 1" do
         ParallelSpecs.stub!(:bundler_enabled?).and_return true
         ParallelSpecs.stub!(:run).with("bundle show rspec").and_return "/foo/bar/rspec-1.0.2"
-        @logger.example_failed( @example1, nil, nil )
+        @logger.example_failed( @example1 )
 
         @logger.dump_failure
 
@@ -241,7 +241,7 @@ EOF
       it "should invoke rspec for rspec 2" do
         ParallelSpecs.stub!(:bundler_enabled?).and_return true
         ParallelSpecs.stub!(:run).with("bundle show rspec").and_return "/foo/bar/rspec-2.0.2"
-        @logger.example_failed( @example1, nil, nil )
+        @logger.example_failed( @example1 )
 
         @logger.dump_failure
 
@@ -249,8 +249,8 @@ EOF
       end
 
       it "should return relative paths" do
-        @logger.example_failed( @example1, nil, nil )
-        @logger.example_failed( @example2, nil, nil )
+        @logger.example_failed( @example1 )
+        @logger.example_failed( @example2 )
 
         @logger.dump_failure
 

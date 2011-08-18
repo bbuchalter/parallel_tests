@@ -7,7 +7,7 @@ class ParallelSpecs::SpecFailuresLogger < ParallelSpecs::SpecLoggerBase
     @failed_examples = []
   end
 
-  def example_failed(example, count, failure)
+  def example_failed(example)
     @failed_examples << example
   end
 
